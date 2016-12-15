@@ -15,13 +15,13 @@ import service.LivrePOJO;
 import storage.Dao;
 import storage.DaoFactory;
 import storage.DaoJPA;
-import technique.LivreManager;
+import technique.ManagedBooks;
 import oreilly.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
 	private Dao<?> dao = new DaoJPA<LivrePOJO>();
-	public List<LivreManager> livres;
+	public List<ManagedBooks> livres;
 	public Livre livre;
 	
 	public Manager() {
@@ -53,11 +53,11 @@ public class Manager {
 		tmp = (List<LivrePOJO>) dao.selectAll();
 		for(LivrePOJO lp : tmp)
 		{
-			livres.add(new LivreManager(lp.getId(), dao));
+			livres.add(new ManagedBooks(lp.getId(), dao));
 		}
 	}
 	
-	public List<LivreManager> afficherLivres() {
+	public List<ManagedBooks> afficherLivres() {
 		return livres;
 	}
 	

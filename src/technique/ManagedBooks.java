@@ -5,17 +5,17 @@ import service.LivrePOJO;
 import storage.Dao;
 import utilitaire.Conversion;
 
-public class LivreManager {
+public class ManagedBooks {
 	private int cle;
 	private Livre model;
 	private LivrePOJO pojo;
 	private Dao<LivrePOJO> dao;
 
-	public LivreManager() {
+	public ManagedBooks() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public LivreManager(int id, Dao<LivrePOJO> d) {
+	public ManagedBooks(int id, Dao<LivrePOJO> d) {
 		cle = id;
 		dao = d;
 		pojo = d.select(id);
@@ -24,7 +24,7 @@ public class LivreManager {
 
 	@Override
 	public String toString() {
-		return "LivreManager [cle=" + cle + ", model=" + model + "]";
+		return "ManagedBooks [cle=" + cle + ", model=" + model + "]";
 	}
 	
 	public Livre reserverLivre() {
