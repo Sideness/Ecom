@@ -6,7 +6,7 @@ import storage.Dao;
 import utilitaire.Conversion;
 
 public class ManagedBooks {
-	private int cle;
+	private int id;
 	private Book model;
 	private BookPOJO pojo;
 	private Dao<BookPOJO> dao;
@@ -16,27 +16,33 @@ public class ManagedBooks {
 	}
 	
 	public ManagedBooks(int id, Dao<BookPOJO> d) {
-		cle = id;
-		dao = d;
-		pojo = d.select(id);
-		model = Conversion.pojoToLivre(pojo);
+		this.id = id;
+		this.dao = d;
+		this.pojo = d.select(id);
+		this.model = Conversion.pojoToLivre(pojo);
 	}
 
 	@Override
 	public String toString() {
-		return "ManagedBooks [cle=" + cle + ", model=" + model + "]";
+		return "ManagedBooks [cle=" + id + ", model=" + model + "]";
 	}
 	
-	public Book reserverLivre() {
-		Book ret = null;
-		pojo.setQte(pojo.getQte()-1);
+	public boolean saveBook() {
+		if(pojo.getQte() >= 0){
+			pojo.setQte(pojo.getQte()-1);
+		}else{
+			return false;
+		}
 		dao.edit(pojo);
-		return ret;
+		return true;
 	}
 	
-	public void lacherLivre() {
-		Book ret = null;
+	public void freeBook() {
 		pojo.setQte(pojo.getQte()+1);
 		dao.edit(pojo);
+	}
+	
+	public float getPrice(int qty){
+		return pojo.getPrix() * qty;
 	}
 }
