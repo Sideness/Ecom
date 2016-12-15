@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Savepoint;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,13 +34,23 @@ public class Cart {
 	}
 	
 	public void ajouterProduit(ManagedBooks book, int qty) throws OutOfStockException {
+		if(book.checkQty(qty)){
+			items.put(book, (items.get(book) == null ? qty : (items.get(book))));
+		}else{
+			throw new OutOfStockException();
+		}
+		
+	}
+	
+	public void orderCart() throws OutOfStockException {
+		//We use this boolean in order to throw only once the exception when
+		//we're out of stock
 		boolean stock = false;
-		for(int i = 0 ; i < qty ; i++){
-			if(book.saveBook()){
-				//TODO Faire un truc moins sale
-				items.put(book, (items.get(book) == null ? qty : qty + (items.get(book))));
-			}else{
-				stock = true;
+		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet()){
+			for(int i = 0 ; i < entry.getValue() ; i++){
+				if(entry.getKey().saveBook()){
+					stock = true;
+				}
 			}
 		}
 		if(stock){
@@ -54,9 +65,27 @@ public class Cart {
 	public float afficherTotal() {
 		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
 		{
-			total += entry.getKey().getPrice(entry.getValue());
+			total += entry.getKey().getPriceByQty(entry.getValue());
 		}
 		
 		return total;
+	}
+	
+	@Override
+	public String toString(){
+		String ret = "";
+		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
+		{
+			ret += "item : ";
+			ret += entry.getKey().getName();
+			ret += ", quantity : ";
+			ret += entry.getValue();
+			ret += ", prix : ";
+			ret += entry.getKey().getPriceByQty(entry.getValue());
+			ret += " | ";
+		}
+		ret += "TOTAL : " + afficherTotal();
+		
+		return ret;
 	}
 }

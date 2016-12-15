@@ -25,7 +25,7 @@ public class Manager {
 	private static Manager instance = new Manager();
 	private Dao<?> dao = new DaoJPA<BookPOJO>();
 	public List<ManagedBooks> books;
-	public Book book;;
+	public ManagedBooks book;;
 	
 	public Manager() {
 		books = new Vector<>();
@@ -42,6 +42,20 @@ public class Manager {
 
 		addBooks(dao);
 		
+		for (int i = 0 ; i < books.size() ; i++){
+			book = books.get(i);
+			addToCart(book, 1);
+		}
+		System.out.println(Cart.getInstance().toString());
+		try {
+			Cart.getInstance().orderCart();
+		} catch (OutOfStockException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		books = new Vector<>();
+		addBooks(dao);
+		//System.out.println(afficherLivres());
 		//readDaoEJB();
 	}
 	

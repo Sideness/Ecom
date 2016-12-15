@@ -42,7 +42,15 @@ public class ManagedBooks {
 		dao.edit(pojo);
 	}
 	
-	public float getPrice(int qty){
+	public float getPriceByQty(int qty){
 		return pojo.getPrix() * qty;
+	}
+	
+	public String getName(){
+		return pojo.getNom();
+	}
+	
+	public boolean checkQty(int qty){
+		return (pojo.getQte() >= qty);
 	}
 }
