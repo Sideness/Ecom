@@ -69,7 +69,7 @@ public class Manager {
 			env = new Properties();
 		    env.put("jboss.naming.client.ejb.context", true); 
 		    env.put(Context.INITIAL_CONTEXT_FACTORY, InitialContextFactory.class.getName());
-			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
+			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8081");
 			contexte = new InitialContext(env);
 			dao = (DaoJPARemote) contexte.lookup("//oreillyDS/DaoJPA!oreilly.DaoJPARemote");
 			ajouterLivres(dao);
