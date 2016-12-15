@@ -20,18 +20,18 @@ import oreilly.DaoJPARemote;
 public class Manager {
 	private static Manager instance = new Manager();
 	private Dao<?> dao = new DaoJPA<LivrePOJO>();
-	public List<LivreManager> lesLivres;
-	public Livre monLivre;
+	public List<LivreManager> livres;
+	public Livre livre;
 	
 	public Manager() {
-		lesLivres = new Vector<>();
+		livres = new Vector<>();
 		init();
 		
 		// TODO: INTEGRER LES FONCTIONS ajouterProduit(...)
 		// DU PANIER DANS LE MANAGER
-		monLivre = new Livre();
-		monLivre = lesLivres.get(1).reserverLivre();
-		lesLivres.get(1).lacherLivre();
+		livre = new Livre();
+		livre = livres.get(1).reserverLivre();
+		livres.get(1).lacherLivre();
 	}
 	
 	public static Manager getInstance() {
@@ -52,12 +52,12 @@ public class Manager {
 		tmp = (List<LivrePOJO>) dao.selectAll();
 		for(LivrePOJO lp : tmp)
 		{
-			lesLivres.add(new LivreManager(lp.getId(), dao));
+			livres.add(new LivreManager(lp.getId(), dao));
 		}
 	}
 	
 	public List<LivreManager> afficherLivres() {
-		return lesLivres;
+		return livres;
 	}
 	
 	private void readDaoEJB() {
