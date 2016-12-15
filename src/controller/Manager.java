@@ -13,6 +13,7 @@ import org.jboss.naming.remote.client.InitialContextFactory;
 import model.Livre;
 import service.LivrePOJO;
 import storage.Dao;
+import storage.DaoFactory;
 import storage.DaoJPA;
 import technique.LivreManager;
 import oreilly.DaoJPARemote;
@@ -40,7 +41,7 @@ public class Manager {
 	
 	public void init() {
 		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) this.dao;
+		dao = (Dao<LivrePOJO>) DaoFactory.getInstance().getDao();
 
 		ajouterLivres(dao);
 		//readDaoEJB();
