@@ -9,9 +9,9 @@ import service.BookPOJO;
 public class Cart {
 	// Panier doit être unique à chaque lancement
 	private static Cart instance = new Cart();
-	private static float LIVRAISON = 23;
-	private Map<BookPOJO, Integer> panier;
-	private float uprix;
+	private static float deliveryCost = 23;
+	private Map<BookPOJO, Integer> cart;
+	private float price;
 	private float total;
 
 	// APPELER LES FONCTIONS DU LIVREMANAGER
@@ -21,32 +21,32 @@ public class Cart {
 	// LES CONTROLES D'AFFICHAGE
 	
 	public Cart() {
-		panier = new HashMap<>();
-		uprix = 0;
+		cart = new HashMap<>();
+		price = 0;
 		total = 0;
 	}
 	
 	public void ajouterProduit(BookPOJO livre) {
 		// TODO: Tester qu'on en ajoute pas + que la limite
-		if(panier.containsKey(livre.getId())) {
-			panier.put(livre, panier.get(livre)+1);
+		if(cart.containsKey(livre.getId())) {
+			cart.put(livre, cart.get(livre)+1);
 		}
 		else {
-			panier.put(livre, 1);
+			cart.put(livre, 1);
 		}
 	}
 	
 	public void supprimerProduit(Book livre) {
-		panier.remove(livre, 1);
+		cart.remove(livre, 1);
 	}
 	
 	public float afficherTotal() {
-		for ( Entry<BookPOJO, Integer> entry : panier.entrySet()) {
+		for ( Entry<BookPOJO, Integer> entry : cart.entrySet()) {
             Integer qte = entry.getValue();
-            uprix = entry.getKey().getPrix();
-            total += uprix * qte;
+            price = entry.getKey().getPrix();
+            total += price * qte;
         }
-		total += LIVRAISON;
+		total += deliveryCost;
 		
 		return total;
 	}

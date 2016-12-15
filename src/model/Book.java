@@ -5,31 +5,31 @@ import storage.Dao;
 import utilitaire.Conversion;
 
 public class Book {
-	private String nom;
+	private String name;
 	private String description;
-	private double prix;
-	private int qte;
-	private String image;
+	private double price;
+	private int qty;
+	private String picture;
 
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Book(String nom, String description, double prix, int qte, String image) {
+	public Book(String name, String description, double price, int qty, String picture) {
 		super();
-		this.nom = nom;
+		this.name = name;
 		this.description = description;
-		this.prix = prix;
-		this.qte = qte;
-		this.image = image;
+		this.price = price;
+		this.qty = qty;
+		this.picture = picture;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String nom) {
+		this.name = nom;
 	}
 
 	public String getDescription() {
@@ -40,34 +40,34 @@ public class Book {
 		this.description = description;
 	}
 
-	public double getPrix() {
-		return prix;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setPrix(double prix) {
-		this.prix = prix;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
-	public int getQte() {
-		return qte;
+	public int getQty() {
+		return qty;
 	}
 
-	public void setQte(short qte) {
-		this.qte = qte;
+	public void setQty(short qty) {
+		this.qty = qty;
 	}
 
-	public String getImage() {
-		return image;
+	public String getPicture() {
+		return picture;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	@Override
 	public String toString() {
-		return "Livre [nom=" + nom + ", description=" + description + ", prix=" + prix + ", qte=" + qte + ", image="
-				+ image + "]";
+		return "Livre [nom=" + name + ", description=" + description + ", prix=" + price + ", qte=" + qty + ", image="
+				+ picture + "]";
 	}
 
 }
