@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import service.LivrePOJO;
+import service.BookPOJO;
 
-public class Panier {
+public class Cart {
 	// Panier doit être unique à chaque lancement
-	private static Panier instance = new Panier();
+	private static Cart instance = new Cart();
 	private static float LIVRAISON = 23;
-	private Map<LivrePOJO, Integer> panier;
+	private Map<BookPOJO, Integer> panier;
 	private float uprix;
 	private float total;
 
@@ -20,13 +20,13 @@ public class Panier {
 	// LE MODEL PANIER ACTUEL EFFECTUE UNIQUEMENT
 	// LES CONTROLES D'AFFICHAGE
 	
-	public Panier() {
+	public Cart() {
 		panier = new HashMap<>();
 		uprix = 0;
 		total = 0;
 	}
 	
-	public void ajouterProduit(LivrePOJO livre) {
+	public void ajouterProduit(BookPOJO livre) {
 		// TODO: Tester qu'on en ajoute pas + que la limite
 		if(panier.containsKey(livre.getId())) {
 			panier.put(livre, panier.get(livre)+1);
@@ -36,12 +36,12 @@ public class Panier {
 		}
 	}
 	
-	public void supprimerProduit(Livre livre) {
+	public void supprimerProduit(Book livre) {
 		panier.remove(livre, 1);
 	}
 	
 	public float afficherTotal() {
-		for ( Entry<LivrePOJO, Integer> entry : panier.entrySet()) {
+		for ( Entry<BookPOJO, Integer> entry : panier.entrySet()) {
             Integer qte = entry.getValue();
             uprix = entry.getKey().getPrix();
             total += uprix * qte;

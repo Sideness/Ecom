@@ -1,21 +1,21 @@
 package model;
 
-import service.LivrePOJO;
+import service.BookPOJO;
 import storage.Dao;
 import utilitaire.Conversion;
 
-public class Livre {
+public class Book {
 	private String nom;
 	private String description;
 	private double prix;
 	private int qte;
 	private String image;
 
-	public Livre() {
+	public Book() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Livre(String nom, String description, double prix, int qte, String image) {
+	public Book(String nom, String description, double prix, int qte, String image) {
 		super();
 		this.nom = nom;
 		this.description = description;

@@ -1,21 +1,21 @@
 package technique;
 
-import model.Livre;
-import service.LivrePOJO;
+import model.Book;
+import service.BookPOJO;
 import storage.Dao;
 import utilitaire.Conversion;
 
 public class ManagedBooks {
 	private int cle;
-	private Livre model;
-	private LivrePOJO pojo;
-	private Dao<LivrePOJO> dao;
+	private Book model;
+	private BookPOJO pojo;
+	private Dao<BookPOJO> dao;
 
 	public ManagedBooks() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ManagedBooks(int id, Dao<LivrePOJO> d) {
+	public ManagedBooks(int id, Dao<BookPOJO> d) {
 		cle = id;
 		dao = d;
 		pojo = d.select(id);
@@ -27,15 +27,15 @@ public class ManagedBooks {
 		return "ManagedBooks [cle=" + cle + ", model=" + model + "]";
 	}
 	
-	public Livre reserverLivre() {
-		Livre ret = null;
+	public Book reserverLivre() {
+		Book ret = null;
 		pojo.setQte(pojo.getQte()-1);
 		dao.edit(pojo);
 		return ret;
 	}
 	
 	public void lacherLivre() {
-		Livre ret = null;
+		Book ret = null;
 		pojo.setQte(pojo.getQte()+1);
 		dao.edit(pojo);
 	}

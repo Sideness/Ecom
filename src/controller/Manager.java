@@ -10,8 +10,8 @@ import javax.naming.NamingException;
 
 import org.jboss.naming.remote.client.InitialContextFactory;
 
-import model.Livre;
-import service.LivrePOJO;
+import model.Book;
+import service.BookPOJO;
 import storage.Dao;
 import storage.DaoFactory;
 import storage.DaoJPA;
@@ -20,9 +20,9 @@ import oreilly.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
-	private Dao<?> dao = new DaoJPA<LivrePOJO>();
+	private Dao<?> dao = new DaoJPA<BookPOJO>();
 	public List<ManagedBooks> livres;
-	public Livre livre;
+	public Book livre;
 	
 	public Manager() {
 		livres = new Vector<>();
@@ -30,7 +30,7 @@ public class Manager {
 		
 		// TODO: INTEGRER LES FONCTIONS ajouterProduit(...)
 		// DU PANIER DANS LE MANAGER
-		livre = new Livre();
+		livre = new Book();
 		livre = livres.get(1).reserverLivre();
 		livres.get(1).lacherLivre();
 	}
@@ -40,18 +40,18 @@ public class Manager {
 	}
 	
 	public void init() {
-		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) DaoFactory.getInstance().getDao();
+		Dao<BookPOJO> dao = null;
+		dao = (Dao<BookPOJO>) DaoFactory.getInstance().getDao();
 
 		ajouterLivres(dao);
 		//readDaoEJB();
 
 	}
 	
-	public void ajouterLivres(Dao<LivrePOJO> dao) {
-		List<LivrePOJO> tmp = null;
-		tmp = (List<LivrePOJO>) dao.selectAll();
-		for(LivrePOJO lp : tmp)
+	public void ajouterLivres(Dao<BookPOJO> dao) {
+		List<BookPOJO> tmp = null;
+		tmp = (List<BookPOJO>) dao.selectAll();
+		for(BookPOJO lp : tmp)
 		{
 			livres.add(new ManagedBooks(lp.getId(), dao));
 		}

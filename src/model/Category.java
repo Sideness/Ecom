@@ -1,11 +1,11 @@
 package model;
 
-public class Categorie {
+public class Category {
 	private String nom;
 	private String description;
 	private String image;
 
-	public Categorie() {
+	public Category() {
 		// TODO Auto-generated constructor stub
 	}
 	
