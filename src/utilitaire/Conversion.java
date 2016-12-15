@@ -11,7 +11,7 @@ public abstract class Conversion {
 	public static Book pojoToLivre(BookPOJO lp)
 	{	
 		Book ret = null;
-		Class<?> aEtudier = null;
+		Class<?> classToResolve = null;
 		Book book = null;
 		Constructor<?> constructor = null;
 		Class<?> types[] = null;
@@ -38,8 +38,8 @@ public abstract class Conversion {
 			
 			try 
 			{
-				aEtudier = Class.forName("model.Book");
-				constructor = aEtudier.getConstructor(types);
+				classToResolve = Class.forName("model.Book");
+				constructor = classToResolve.getConstructor(types);
 				book = (Book) constructor.newInstance(values);
 				System.out.println(book);
 			} 
