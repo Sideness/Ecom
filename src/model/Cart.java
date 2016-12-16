@@ -56,6 +56,7 @@ public class Cart {
 		if(stock){
 			throw new OutOfStockException();
 		}
+		items.clear();
 	}
 	
 	public void supprimerProduit(ManagedBooks book) {
