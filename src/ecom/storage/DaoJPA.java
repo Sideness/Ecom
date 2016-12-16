@@ -1,4 +1,4 @@
-package storage;
+package ecom.storage;
 
 import java.util.List;
 

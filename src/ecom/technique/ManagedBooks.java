@@ -1,9 +1,9 @@
-package technique;
+package ecom.technique;
 
-import model.Book;
-import service.BookPOJO;
-import storage.Dao;
-import utilitaire.Conversion;
+import ecom.model.Book;
+import ecom.service.BookPOJO;
+import ecom.storage.Dao;
+import ecom.utilitaire.Conversion;
 
 public class ManagedBooks {
 	private int id;

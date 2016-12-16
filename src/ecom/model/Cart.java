@@ -1,10 +1,10 @@
-package model;
+package ecom.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import technique.ManagedBooks;
-import technique.OutOfStockException;
+import ecom.technique.ManagedBooks;
+import ecom.technique.OutOfStockException;
 
 public class Cart {
 	private static Cart instance = new Cart();

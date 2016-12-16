@@ -1,10 +1,10 @@
-package utilitaire;
+package ecom.utilitaire;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import model.Book;
-import service.BookPOJO;
+import ecom.model.Book;
+import ecom.service.BookPOJO;
 
 public abstract class Conversion {
 	private static final String PAQ = "model.";

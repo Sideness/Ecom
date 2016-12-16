@@ -1,9 +1,8 @@
-package controller;
+package ecom.controller;
 
 import java.util.List;
 import java.util.Properties;
 import java.util.Vector;
-import java.util.stream.IntStream;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,21 +10,18 @@ import javax.naming.NamingException;
 
 import org.jboss.naming.remote.client.InitialContextFactory;
 
-import model.Book;
-import model.Cart;
-import service.BookPOJO;
-import storage.Dao;
-import storage.DaoFactory;
-import storage.DaoJPA;
-import technique.ManagedBooks;
-import technique.OutOfStockException;
-import oreilly.DaoJPARemote;
+import ecom.model.Cart;
+import ecom.service.BookPOJO;
+import ecom.storage.Dao;
+import ecom.storage.DaoFactory;
+import ecom.technique.ManagedBooks;
+import ecom.technique.OutOfStockException;
+import oreilly.storage.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
-	private Dao<?> dao = new DaoJPA<BookPOJO>();
 	public List<ManagedBooks> books;
-	public ManagedBooks book;;
+	public ManagedBooks book;
 	
 	public Manager() {
 		books = new Vector<>();
@@ -39,8 +35,8 @@ public class Manager {
 	public void init() {
 		Dao<BookPOJO> dao = null;
 		dao = (Dao<BookPOJO>) DaoFactory.getInstance().getDao();
-
-		addBooks(dao);
+		addBooks(dao);	
+		readDaoEJB();
 		
 		for (int i = 0 ; i < books.size() ; i++){
 			book = books.get(i);
@@ -55,7 +51,6 @@ public class Manager {
 		}
 		books = new Vector<>();
 		System.out.println("Livres managés réinitialisés");
-		addBooks(dao);
 	}
 	
 	public void addToCart(ManagedBooks book, int qty) {
@@ -91,9 +86,9 @@ public class Manager {
 			env = new Properties();
 		    env.put("jboss.naming.client.ejb.context", true); 
 		    env.put(Context.INITIAL_CONTEXT_FACTORY, InitialContextFactory.class.getName());
-			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8081");
+			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
 			contexte = new InitialContext(env);
-			dao = (DaoJPARemote) contexte.lookup("//oreillyDS/DaoJPA!oreilly.DaoJPARemote");
+			dao = (DaoJPARemote) contexte.lookup("java:global/oreilly/DaoJPA!oreilly.storage.DaoJPARemote");
 			addBooks(dao);
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block

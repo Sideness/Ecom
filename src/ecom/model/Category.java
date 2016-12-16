@@ -1,4 +1,4 @@
-package model;
+package ecom.model;
 
 public class Category {
 	private String nom;

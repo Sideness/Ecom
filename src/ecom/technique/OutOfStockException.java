@@ -1,4 +1,4 @@
-package technique;
+package ecom.technique;
 
 public class OutOfStockException extends Exception{
 	

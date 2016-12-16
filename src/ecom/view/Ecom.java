@@ -1,10 +1,10 @@
-package view;
+package ecom.view;
 
 import java.util.Arrays;
 import java.util.List;
 
-import controller.Manager;
-import technique.ManagedBooks;
+import ecom.controller.Manager;
+import ecom.technique.ManagedBooks;
 
 public class Ecom {
 	
