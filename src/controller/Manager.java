@@ -54,9 +54,8 @@ public class Manager {
 			e.printStackTrace();
 		}
 		books = new Vector<>();
+		System.out.println("Livres managés réinitialisés");
 		addBooks(dao);
-		//System.out.println(afficherLivres());
-		//readDaoEJB();
 	}
 	
 	public void addToCart(ManagedBooks book, int qty) {
