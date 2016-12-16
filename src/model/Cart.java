@@ -47,10 +47,12 @@ public class Cart {
 			throw new OutOfStockException();
 		}
 		items.clear();
+		System.out.println("Livres commandés. Panier vidé.");
 	}
 	
 	public void supprimerProduit(ManagedBooks book) {
 		items.remove(book);
+		System.out.println(book.getName() + " supprimé du panier");
 	}
 	
 	public float afficherTotal() {
