@@ -1,9 +1,5 @@
 package model;
 
-import service.BookPOJO;
-import storage.Dao;
-import utilitaire.Conversion;
-
 public class Book {
 	private String name;
 	private String description;

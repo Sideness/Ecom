@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import controller.Manager;
-import model.Book;
 import technique.ManagedBooks;
 
 public class Ecom {

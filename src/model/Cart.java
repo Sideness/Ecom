@@ -1,27 +1,17 @@
 package model;
 
-import java.sql.Savepoint;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import service.BookPOJO;
 import technique.ManagedBooks;
 import technique.OutOfStockException;
 
 public class Cart {
-	// Panier doit être unique à chaque lancement
 	private static Cart instance = new Cart();
 	private static float deliveryCost = 23;
 	private Map<ManagedBooks, Integer> items;
 	private float price;
 	private float total;
-
-	// APPELER LES FONCTIONS DU LIVREMANAGER
-	// POUR L'ECHANGE AVEC LA DAO
-	
-	// LE MODEL PANIER ACTUEL EFFECTUE UNIQUEMENT
-	// LES CONTROLES D'AFFICHAGE
 	
 	private Cart() {
 		items = new HashMap<>();
@@ -69,7 +59,7 @@ public class Cart {
 			total += entry.getKey().getPriceByQty(entry.getValue());
 		}
 		
-		return total;
+		return total + deliveryCost;
 	}
 	
 	@Override
