@@ -9,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ecom.model.Cart;
 import ecom.technique.ManagedBooks;
+import ecom.technique.OutOfStockException;
 
 /**
- * Servlet implementation class InitServlet
+ * Servlet implementation class OrderCartServlet
  */
-@WebServlet({ "/InitServlet", "/home" })
-public class InitServlet extends HttpServlet {
+@WebServlet({"/OrderCartServlet", "/orderCart"})
+public class OrderCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InitServlet() {
+    public OrderCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +32,16 @@ public class InitServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Cart.getInstance().orderCart();
+		} catch (OutOfStockException e) {
+			request.setAttribute("msg", e.getMessage());
+			e.printStackTrace();
+		}
+		
 		List<ManagedBooks> list = Manager.getInstance().displayBooks();
 		request.setAttribute("modele", list);
-		for(int i = 0 ; i < list.size() ; i++){
-			request.getSession().setAttribute(Integer.toString(list.get(i).getId()), list.get(i));
-		}
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("index.php").forward(request, response);
 	}
 
 	/**

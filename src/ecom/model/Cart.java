@@ -55,13 +55,30 @@ public class Cart {
 		System.out.println(book.getName() + " supprimé du panier");
 	}
 	
-	public float afficherTotal() {
+	public Map<ManagedBooks, Integer> getCart(){
+		return items;
+	}
+	
+	public float getTotalPriceDelivery() {
 		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
 		{
 			total += entry.getKey().getPriceByQty(entry.getValue());
 		}
 		
 		return total + deliveryCost;
+	}
+	
+	public float getTotalPrice() {
+		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
+		{
+			total += entry.getKey().getPriceByQty(entry.getValue());
+		}
+		
+		return total;
+	}
+	
+	public float getDelivery(){
+		return deliveryCost;
 	}
 	
 	@Override
@@ -77,7 +94,7 @@ public class Cart {
 			ret += entry.getKey().getPriceByQty(entry.getValue());
 			ret += " | ";
 		}
-		ret += "TOTAL : " + afficherTotal();
+		ret += "TOTAL : " + getTotalPriceDelivery();
 		
 		return ret;
 	}

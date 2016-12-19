@@ -26,7 +26,7 @@
 	<div class="caddie">
 	<section>
 		<article>
-			<form name="f" action="caddie.ctrl.php" method="post">
+			<form name="fAddBook" action="addToCart" method="post">
 			<table>
 				<tr>
 					<th class="id">ID</th>
@@ -44,8 +44,9 @@
 						<td>${book.getNom()}</td>
 						<td class="description">${book.getDescription()}</td>
 						<td class="prix">${book.getPrix()}&euro;</td>
-						<td><input type="number" name="nombre" value="1"></td>
-						<td><a href=""><img src="images/cart.png"></a></td>
+						<td><input type="number" name="nombre" value="1">
+						<input type="hidden" name="bookObject" value="${book.getId()}"></td>
+						<td><a href="fAddBook.submit()"><img src="images/cart.png"></a></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -62,39 +63,31 @@
 					<th>Prix unitaire</th>
 					<th>Sous total</th>
 				</tr>
-				<tr>
-					<td>html et xhtml</td>
-					<td>1</td>
-					<td>35&euro;</td>
-					<td>35&euro;</td>
-				</tr>
-				<tr>
-					<td>mysql</td>
-					<td>1</td>
-					<td>62&euro;</td>
-					<td>62&euro;</td>
-				</tr>
-				<tr>
-					<td>postgresql</td>
-					<td>1</td>
-					<td>56&euro;</td>
-					<td>56&euro;</td>
-				</tr>
+				<c:forEach var="cartBooks" items="${cartBooks}">
+					<tr>
+						<td>${cartBooks.getNom()}</td>
+						<td>${cartBooksNumber}[cartBooks.index]</td>
+						<td>${cartBooks.getPriceByQty()}</td>
+						<td>${cartBooks.getPriceByQty(${cartBooksNumber}[cartBooks.index])}&euro;</td>
+					</tr>
+				</c:forEach>
 				<tr>
 					<th colspan="2">Sous total</th>
-					<td colspan="2">153&euro;</td>
+					<td colspan="2">${totalPrice}&euro;</td>
 				</tr>
 				<tr>				
 					<th colspan="2">Livraison</th>
-					<td colspan="2">23&euro;</td>
+					<td colspan="2">${delivery}&euro;</td>
 				</tr>
 				<tr>
 					<th colspan="2">Total</th>
-					<td colspan="2">176&euro;</td>
+					<td colspan="2">${totalPriceDelivery}&euro;</td>
 				</tr>				
 			</table>
 			<p class="bnt">
-			<input type="button" onclick="visuPanier();" value="Ouvrir le panier">
+			<form name="fOrderCart" action="orderCart" method="post">
+				<input type="button" onclick="fOrderCart.submit();" value="Payer">
+			</form>
 			</p>
 		</aside>
 	</section>

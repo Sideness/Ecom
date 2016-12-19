@@ -46,8 +46,16 @@ public class ManagedBooks {
 		return pojo.getPrix() * qty;
 	}
 	
+	public float getPrice(){
+		return pojo.getPrix();
+	}
+	
 	public String getName(){
 		return pojo.getNom();
+	}
+	
+	public int getId(){
+		return pojo.getId();
 	}
 	
 	public boolean checkQty(int qty){
