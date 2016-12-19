@@ -37,10 +37,10 @@ public class Manager {
 	public void init() {
 		dao = null;
 		try {
-			//dao = (DaoJPA) InitialContext.doLookup("//Ecom/DaoJPA!ecom.storage.DaoJPA");
-			dao = (Dao<BookPOJO>) DaoFactory.getInstance().getDao();
+			dao = (DaoJPA) InitialContext.doLookup("//Ecom/DaoJPA!ecom.storage.DaoJPA");
+			//dao = (Dao<BookPOJO>) DaoFactory.getInstance().getDao();
 			addBooks(dao);
-			//readDaoEJB();
+			readDaoEJB();
 
 			for (int i = 0; i < books.size(); i++) {
 				book = books.get(i);
@@ -55,9 +55,9 @@ public class Manager {
 			}
 			books = new Vector<>();
 			System.out.println("Livres managés réinitialisés");
-		/*} catch (NamingException e1) {
+		} catch (NamingException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();*/
+			e1.printStackTrace();
 		} catch (Exception e){
 			//Todo handle exception
 			e.printStackTrace();
@@ -91,7 +91,7 @@ public class Manager {
 	private void readDaoEJB() {
 		DaoJPARemote dao = null;
 		try {
-			dao = (DaoJPARemote) InitialContext.doLookup("java:global/oreilly/DaoJPA!oreilly.storage.DaoJPARemote");
+			dao = (DaoJPARemote) InitialContext.doLookup("//oreilly/DaoJPA!oreily.storage.DaoJPARemote");
 			addBooks(dao);
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
