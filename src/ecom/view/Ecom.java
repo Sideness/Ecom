@@ -21,7 +21,7 @@ public class Ecom {
 	
 	public void afficher() {
 		List<ManagedBooks> tmp = null;
-		tmp = Manager.getInstance().afficherLivres();
+		tmp = Manager.getInstance().displayBooks();
 		Arrays.asList(tmp).forEach(System.out::println);
 	}
 }

@@ -7,7 +7,7 @@ import ecom.model.Book;
 import ecom.service.BookPOJO;
 
 public abstract class Conversion {
-	private static final String PAQ = "model.";
+	private static final String PAQ = "ecom.model.";
 	public static Book pojoToLivre(BookPOJO lp)
 	{	
 		Book ret = null;
@@ -38,7 +38,7 @@ public abstract class Conversion {
 			
 			try 
 			{
-				classToResolve = Class.forName("model.Book");
+				classToResolve = Class.forName("ecom.model.Book");
 				constructor = classToResolve.getConstructor(types);
 				book = (Book) constructor.newInstance(values);
 				System.out.println(book);

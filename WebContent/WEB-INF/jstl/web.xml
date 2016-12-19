@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ASCII"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>zoo</display-name>
+  
+  <servlet>
+  	<servlet-name>Manger</servlet-name>
+  	<servlet-class>controleurs.MangerServlet</servlet-class>
+  	<init-param>
+  		<param-name>urlReponse</param-name>
+  		<param-value>/WEB-INF/vues/reponse.jsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>urlErreurs</param-name>
+  		<param-value>/WEB-INF/vues/erreurs.jsp</param-value>
+  	</init-param>
+  </servlet>
+  <servlet>
+  	<servlet-name>Creation</servlet-name>
+  	<servlet-class>controleurs.CreationServlet</servlet-class>
+  	<init-param>
+  		<param-name>urlReponse</param-name>
+  		<param-value>/WEB-INF/vues/reponse.jsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>urlErreurs</param-name>
+  		<param-value>/WEB-INF/vues/erreurs.jsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>nom</param-name>
+  		<param-value>Inconnu</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Manger</servlet-name>
+  	<url-pattern>/manger</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Creation</servlet-name>
+  	<url-pattern>/do/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>

@@ -1,3 +1,8 @@
+<%@page import="ecom.service.BookPOJO"%>
+<%@page import="java.util.List"%>
+<%@taglib uri="/WEB-INF/jstl/c.tld" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,24 +37,17 @@
 					<th>Quantit&eacute;</th>
 					<th>Ajouter au panier</th>
 				</tr>
-				<tr>
-					<td class="id">3</td>
-					<td><img alt="couverture la bible mysql" src="images/mysql.jpg"></td>
-					<td>PHP5 and MySQL Bible</td>
-					<td class="description">La bible de mysql</td>
-					<td class="prix">62&euro;</td>
-					<td><input type="number" name="nombre" value="1"></td>
-					<td><a href=""><img src="images/cart.png"></a></td>
-				</tr>	
-								<tr>
-					<td class="id">8</td>
-					<td><img alt="couverture postgresql" src="images/postgresql.jpg"></td>
-					<td>PostgreSQL</td>
-					<td class="description">Administration et exploitation de vos bases de donn&eacute;es</td>
-					<td class="prix">56&euro;</td>
-					<td><input type="number" name="nombre" value="1" ></td>
-					<td><a href="#"><img src="images/cart.png"></a></td>
-				</tr>
+				<c:forEach var="book" items="${modele}">
+					<tr>
+						<td class="id">${book.getId()}</td>
+						<td><img alt="couverture ${book.getNom()}" src="images/${book.getImage()}"></td>
+						<td>${book.getNom()}</td>
+						<td class="description">${book.getDescription()}</td>
+						<td class="prix">${book.getPrix()}&euro;</td>
+						<td><input type="number" name="nombre" value="1"></td>
+						<td><a href=""><img src="images/cart.png"></a></td>
+					</tr>
+				</c:forEach>
 			</table>
 			</form>
 		</article>
