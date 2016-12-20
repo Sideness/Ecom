@@ -10,12 +10,10 @@ public class Cart {
 	private static Cart instance = new Cart();
 	private static float deliveryCost = 23;
 	private Map<ManagedBooks, Integer> items;
-	private float price;
 	private float total;
 	
 	private Cart() {
 		items = new HashMap<>();
-		price = 0;
 		total = 0;
 	}
 	

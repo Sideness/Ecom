@@ -1,20 +1,14 @@
 package ecom.controller;
 
 import java.util.List;
-import java.util.Properties;
 import java.util.Vector;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
-import org.jboss.naming.remote.client.InitialContextFactory;
 
 import ecom.model.Cart;
 import ecom.service.BookPOJO;
 import ecom.storage.Dao;
-import ecom.storage.DaoFactory;
-import ecom.storage.DaoJPA;
 import ecom.technique.ManagedBooks;
 import ecom.technique.OutOfStockException;
 import oreilly.storage.DaoJPARemote;

@@ -33,7 +33,7 @@ public class InitServlet extends HttpServlet {
 		List<ManagedBooks> list = Manager.getInstance().displayBooks();
 		request.setAttribute("modele", list);
 		for(int i = 0 ; i < list.size() ; i++){
-			request.getSession().setAttribute(Integer.toString(list.get(i).getId()), list.get(i));
+			request.getSession().setAttribute(Integer.toString(list.get(i).getKey()), list.get(i));
 		}
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

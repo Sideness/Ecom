@@ -84,9 +84,9 @@
 				</tr>				
 			</table>
 			<p class="bnt">
-			<form name="fOrderCart" action="orderCart" method="post">
-				<input type="button" onclick="fOrderCart.submit();" value="Payer">
-			</form>
+				<form name="fOrderCart" action="orderCart" method="post">
+					<input type="button" onclick="fOrderCart.submit();" value="Payer">
+				</form>
 			</p>
 		</aside>
 	</section>

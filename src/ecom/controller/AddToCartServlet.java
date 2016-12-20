@@ -38,10 +38,9 @@ public class AddToCartServlet extends HttpServlet {
 		request.setAttribute("modele", list);
 		
 		ManagedBooks book = null;
-		String nombre = request.getParameter("nombre");
-		String bookId = request.getParameter("bookObject");
+		String bookId = request.getParameter("bookId");
+		int qty = Integer.parseInt(request.getParameter("number"));
 		book = (ManagedBooks) request.getSession().getAttribute(bookId);
-		int qty = Integer.parseInt(request.getParameter("nombre"));
 		
 		Manager.getInstance().addToCart(book, qty);
 		

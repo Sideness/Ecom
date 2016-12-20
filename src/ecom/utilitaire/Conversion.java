@@ -7,7 +7,6 @@ import ecom.model.Book;
 import ecom.service.BookPOJO;
 
 public abstract class Conversion {
-	private static final String PAQ = "ecom.model.";
 	public static Book pojoToLivre(BookPOJO lp)
 	{	
 		Book ret = null;
