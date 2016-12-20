@@ -1,5 +1,7 @@
 package ecom.storage;
 
+
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,13 +12,17 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 @LocalBean
-public class DaoJPA<T> implements Dao<T>  {
+public class DaoJPA<T> implements Dao<T>, Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@PersistenceContext(name="Ecom")
 	private EntityManager em;
 	public DaoJPA() {
 		System.out.println("=============== OUTPUT Source::JPA ===============");
-		em = Persistence.createEntityManagerFactory("Ecom").createEntityManager();
+		//em = Persistence.createEntityManagerFactory("Ecom").createEntityManager();
 	}
 	
 	@Override

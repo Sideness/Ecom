@@ -6,7 +6,7 @@ import ecom.storage.Dao;
 import ecom.utilitaire.Conversion;
 
 public class ManagedBooks {
-	private int id;
+	private int key;
 	private Book model;
 	private BookPOJO pojo;
 	private Dao<BookPOJO> dao;
@@ -15,8 +15,8 @@ public class ManagedBooks {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ManagedBooks(int id, Dao<BookPOJO> d) {
-		this.id = id;
+	public ManagedBooks(int id, Dao<BookPOJO> d, int rank) {
+		this.key = rank;
 		this.dao = d;
 		this.pojo = d.select(id);
 		this.model = Conversion.pojoToLivre(pojo);
@@ -24,7 +24,7 @@ public class ManagedBooks {
 
 	@Override
 	public String toString() {
-		return "ManagedBooks [cle=" + id + ", model=" + model + "]";
+		return "ManagedBooks [cle=" + key + ", model=" + model + "]";
 	}
 	
 	public boolean saveBook() {
@@ -60,5 +60,17 @@ public class ManagedBooks {
 	
 	public boolean checkQty(int qty){
 		return (pojo.getQte() >= qty);
+	}
+	
+	public String getImage(){
+		return pojo.getImage();
+	}
+	
+	public String getDescription(){
+		return pojo.getDescription();
+	}
+
+	public int getKey() {
+		return key;
 	}
 }

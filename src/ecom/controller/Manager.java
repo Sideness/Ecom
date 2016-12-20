@@ -24,9 +24,11 @@ public class Manager {
 	public List<ManagedBooks> books;
 	public ManagedBooks book;
 	private Dao<BookPOJO> dao;
+	private int rank;
 
 	public Manager() {
 		books = new Vector<>();
+		rank = 0;
 		init();
 	}
 
@@ -35,14 +37,14 @@ public class Manager {
 	}
 
 	public void init() {
-		dao = null;
+		//dao = null;
 		try {
-			dao = (DaoJPA) InitialContext.doLookup("//Ecom/DaoJPA!ecom.storage.DaoJPA");
+			dao = InitialContext.doLookup("java:module/DaoJPA!ecom.storage.DaoJPA");
 			//dao = (Dao<BookPOJO>) DaoFactory.getInstance().getDao();
 			addBooks(dao);
 			readDaoEJB();
 
-			for (int i = 0; i < books.size(); i++) {
+			/*for (int i = 0; i < books.size(); i++) {
 				book = books.get(i);
 				addToCart(book, 1);
 			}
@@ -52,9 +54,7 @@ public class Manager {
 			} catch (OutOfStockException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			books = new Vector<>();
-			System.out.println("Livres managés réinitialisés");
+			}*/
 		} catch (NamingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -79,7 +79,8 @@ public class Manager {
 		List<BookPOJO> tmp = null;
 		tmp = (List<BookPOJO>) dao.selectAll();
 		for (BookPOJO lp : tmp) {
-			books.add(new ManagedBooks(lp.getId(), dao));
+			books.add(new ManagedBooks(lp.getId(), dao, rank));
+			rank++;
 		}
 		System.out.println("Livres Managés créés");
 	}

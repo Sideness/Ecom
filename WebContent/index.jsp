@@ -39,14 +39,14 @@
 				</tr>
 				<c:forEach var="book" items="${modele}">
 					<tr>
-						<td class="id">${book.getId()}</td>
-						<td><img alt="couverture ${book.getNom()}" src="images/${book.getImage()}"></td>
-						<td>${book.getNom()}</td>
+						<td class="id">${book.getKey()}</td>
+						<td><img alt="couverture ${book.getName()}" src="images/${book.getImage()}"></td>
+						<td>${book.getName()}</td>
 						<td class="description">${book.getDescription()}</td>
-						<td class="prix">${book.getPrix()}&euro;</td>
+						<td class="prix">${book.getPrice()}&euro;</td>
 						<td><input type="number" name="nombre" value="1">
-						<input type="hidden" name="bookObject" value="${book.getId()}"></td>
-						<td><a href="fAddBook.submit()"><img src="images/cart.png"></a></td>
+						<input type="number" name="bookObject" value="${book.getKey()}"></td>
+						<td><a href="#" onClick="fAddBook.submit()"><img src="images/cart.png"></a></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -65,7 +65,7 @@
 				</tr>
 				<c:forEach var="cartBooks" items="${cartBooks}">
 					<tr>
-						<td>${cartBooks.getNom()}</td>
+						<td>${cartBooks.getName()}</td>
 						<td>${cartBooksNumber}[cartBooks.index]</td>
 						<td>${cartBooks.getPriceByQty()}</td>
 						<td>${cartBooks.getPriceByQty(${cartBooksNumber}[cartBooks.index])}&euro;</td>
