@@ -61,7 +61,7 @@ public class Manager {
 
 	public void addToCart(ManagedBooks book, int qty) {
 		try {
-			Cart.getInstance().ajouterProduit(book, qty);
+			Cart.getInstance().addToCart(book, qty);
 			System.out.println(book.getName() + " ajouté au panier.");
 		} catch (OutOfStockException e) {
 			// TODO Auto-generated catch block

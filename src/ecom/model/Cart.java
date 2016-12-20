@@ -21,7 +21,7 @@ public class Cart {
 		return instance;
 	}
 	
-	public void ajouterProduit(ManagedBooks book, int qty) throws OutOfStockException {
+	public void addToCart(ManagedBooks book, int qty) throws OutOfStockException {
 		if(book.checkQty(qty)){
 			items.put(book, (items.get(book) == null ? qty : (items.get(book))));
 		}else{
@@ -48,7 +48,7 @@ public class Cart {
 		System.out.println("Livres commandés. Panier vidé.");
 	}
 	
-	public void supprimerProduit(ManagedBooks book) {
+	public void removeBook(ManagedBooks book) {
 		items.remove(book);
 		System.out.println(book.getName() + " supprimé du panier");
 	}
@@ -58,6 +58,7 @@ public class Cart {
 	}
 	
 	public float getTotalPriceDelivery() {
+		total = 0;
 		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
 		{
 			total += entry.getKey().getPriceByQty(entry.getValue());
@@ -67,6 +68,7 @@ public class Cart {
 	}
 	
 	public float getTotalPrice() {
+		total = 0;
 		for (Map.Entry<ManagedBooks, Integer> entry : items.entrySet())
 		{
 			total += entry.getKey().getPriceByQty(entry.getValue());

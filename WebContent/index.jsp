@@ -62,12 +62,12 @@
 					<th>Prix unitaire</th>
 					<th>Sous total</th>
 				</tr>
-				<c:forEach var="cartBooks" items="${cartBooks}">
+				<c:forEach var="cartBooks" items="${cartBooks}" varStatus="loop">
 					<tr>
 						<td>${cartBooks.getName()}</td>
 						<td>${cartBooksNumber}[cartBooks.index]</td>
-						<td>${cartBooks.getPriceByQty()}</td>
-						<td>${cartBooks.getPriceByQty(${cartBooksNumber}[cartBooks.index])}&euro;</td>
+						<td></td>
+						<td>&euro;</td>
 					</tr>
 				</c:forEach>
 				<tr>

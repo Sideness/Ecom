@@ -41,7 +41,7 @@ public class OrderCartServlet extends HttpServlet {
 		
 		List<ManagedBooks> list = Manager.getInstance().displayBooks();
 		request.setAttribute("modele", list);
-		request.getRequestDispatcher("index.php").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
