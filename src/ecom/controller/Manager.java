@@ -92,7 +92,7 @@ public class Manager {
 	private void readDaoEJB() {
 		DaoJPARemote dao = null;
 		try {
-			dao = (DaoJPARemote) InitialContext.doLookup("//oreilly/DaoJPA!oreily.storage.DaoJPARemote");
+			dao = InitialContext.doLookup("java:global/oreilly/DaoJPA!oreilly.storage.DaoJPARemote");
 			addBooks(dao);
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block

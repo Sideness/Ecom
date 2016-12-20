@@ -37,16 +37,15 @@
 					<th>Quantit&eacute;</th>
 					<th>Ajouter au panier</th>
 				</tr>
-				<c:forEach var="book" items="${modele}">
+				<c:forEach var="book" items="${modele}" varStatus="pStatus">
 					<tr>
 						<td class="id">${book.getKey()}</td>
 						<td><img alt="couverture ${book.getName()}" src="images/${book.getImage()}"></td>
 						<td>${book.getName()}</td>
 						<td class="description">${book.getDescription()}</td>
 						<td class="prix">${book.getPrice()}&euro;</td>
-						<td><input type="number" name="nombre" value="1">
-						<input type="number" name="bookObject" value="${book.getKey()}"></td>
-						<td><a href="#" onClick="fAddBook.submit()"><img src="images/cart.png"></a></td>
+						<td><input id="${book.getKey()}" type="number" name="nombre" value="1"></td>
+						<td><a onClick="addToCart(${book.getKey()})"><img src="images/cart.png"></a></td>
 					</tr>
 				</c:forEach>
 			</table>
