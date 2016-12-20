@@ -37,11 +37,6 @@ public class ManagedBooks {
 		return true;
 	}
 	
-	public void freeBook() {
-		pojo.setQte(pojo.getQte()+1);
-		dao.edit(pojo);
-	}
-	
 	public float getPriceByQty(int qty){
 		return pojo.getPrix() * qty;
 	}

@@ -44,14 +44,10 @@ public class AddToCartServlet extends HttpServlet {
 		
 		Manager.getInstance().addToCart(book, qty);
 		
-		List<ManagedBooks> listCartBooks = new ArrayList<>();
-		List<Integer> listCartNumber = new ArrayList<>();
 		Map<ManagedBooks, Integer> map = Cart.getInstance().getCart();
 		int i = 0;
 		for (Map.Entry<ManagedBooks, Integer> entry : map.entrySet())
 		{
-			//listCartBooks.add(entry.getKey());
-			//listCartNumber.add(entry.getValue());
 			request.setAttribute("key" + Integer.toString(i), entry.getKey());
 			request.setAttribute("value" + Integer.toString(i), entry.getValue());
 		}
